@@ -3,7 +3,7 @@ import {
     differenceInYears,
     setYear,
     getYear,
-    isSameDay,
+    isSameDay
 } from "date-fns";
 
 export const daysLeftUntilBirthday = (dateOfBirth: number): number => {
@@ -27,4 +27,8 @@ export const howMuchTurns = (dateOfBirth: number): number => {
 
 export const isDefaultBirthdate = (dateOfBirth: number): boolean => {
     return isSameDay(dateOfBirth, new Date().getTime());
+};
+
+export const dateOfBirthFormat = (dateOfBirth: number): string => {
+    return new Date(dateOfBirth).toLocaleDateString("en-GB");
 };

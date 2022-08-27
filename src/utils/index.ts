@@ -1,4 +1,4 @@
 export * from "./localStorage";
-export * from "./Gifts";
-export * from "./Persons";
+export * from "./gifts";
+export * from "./persons";
 export * from "./theme";

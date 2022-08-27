@@ -79,6 +79,20 @@ export const PersonsProvider = ({ children }: PropsChangePerson) => {
         });
     };
 
+    const deleteGiftsEmpty = (idPerson: string) => {
+        setPersons((prevPersons) => {
+            const newPersons = [...prevPersons].map((person) => {
+                if (person.id === idPerson) {
+                    const newGifts = person.gifts.filter((gift) => gift.name);
+                    return { ...person, gifts: newGifts };
+                }
+                return person;
+            });
+
+            return newPersons;
+        });
+    };
+
     const deleteAllGifts = (idPerson: string) => {
         setPersons((prevPersons) => {
             const newPersons = [...prevPersons].map((person) =>
@@ -133,6 +147,7 @@ export const PersonsProvider = ({ children }: PropsChangePerson) => {
                 changeInputGift,
                 deleteAllGifts,
                 deleteGift,
+                deleteGiftsEmpty,
                 handleChangePerson,
                 handleChangePersonBirthDate,
                 handleDeletePerson,

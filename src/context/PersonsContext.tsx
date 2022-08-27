@@ -18,6 +18,7 @@ interface ContextProps {
     ) => void;
     deleteAllGifts: (idPerson: string) => void;
     deleteGift: (idPerson: string, idGift: string) => void;
+    deleteGiftsEmpty: (idPerson: string) => void;
     handleChangePerson: (id: string, { name, value }: PropsChangeInput) => void;
     handleChangePersonBirthDate: (id: string, date: number) => void;
     handleDeletePerson: (id: string) => void;

@@ -19,6 +19,7 @@ import { PersonsContext } from "../../context";
 import { Person } from "../../interfaces";
 import { GiftGrid } from "./GiftGrid";
 import {
+    dateOfBirthFormat,
     daysLeftUntilBirthday,
     howMuchTurns,
     isDefaultBirthdate
@@ -37,6 +38,7 @@ export const PersonCard = ({ person }: Props) => {
     const [isAbleToEdit, setIsAbleToEdit] = useState(initialValueAbleToEdit);
 
     const {
+        deleteGiftsEmpty,
         handleDeletePerson,
         handleChangePerson,
         handleChangePersonBirthDate
@@ -51,6 +53,7 @@ export const PersonCard = ({ person }: Props) => {
     };
 
     const handleEditCard = () => {
+        deleteGiftsEmpty(id);
         setIsAbleToEdit(!isAbleToEdit);
     };
 
@@ -59,17 +62,24 @@ export const PersonCard = ({ person }: Props) => {
             <Card variant="elevation">
                 <CardHeader
                     title={
-                        <TextField
-                            autoFocus
-                            variant="standard"
-                            color="secondary"
-                            fullWidth
-                            value={name}
-                            name={"name"}
-                            onChange={(e) => handleChangePerson(id, e.target)}
-                            placeholder={"John doe.."}
-                            disabled={!isAbleToEdit}
-                        />
+                        <>
+                            {isAbleToEdit ? (
+                                <TextField
+                                    autoFocus
+                                    variant="standard"
+                                    color="secondary"
+                                    fullWidth
+                                    value={name}
+                                    name={"name"}
+                                    onChange={(e) =>
+                                        handleChangePerson(id, e.target)
+                                    }
+                                    placeholder={"John doe.."}
+                                />
+                            ) : (
+                                <Typography variant="h6">{name}</Typography>
+                            )}
+                        </>
                     }
                     action={
                         <>
@@ -102,7 +112,7 @@ export const PersonCard = ({ person }: Props) => {
                             display: "flex",
                             flexDirection: ["column", "column", "row-reverse"],
                             gap: "16px",
-                            justifyContent: "center",
+                            justifyContent: "space-around",
                             padding: 0
                         }}
                     >
@@ -115,29 +125,39 @@ export const PersonCard = ({ person }: Props) => {
                                 )} days`}
                             </Typography>
                         )}
-
-                        <DatePicker
-                            disableFuture
-                            disabled={!isAbleToEdit}
-                            value={dateOfBirth}
-                            onChange={(value) =>
-                                handleBirthDateChange(Number(value))
-                            }
-                            inputFormat="dd/MM/yyyy"
-                            label="Date of birth"
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    sx={{
-                                        svg: {
-                                            color: isAbleToEdit
-                                                ? palette.primary.main
-                                                : palette.text.disabled
-                                        }
-                                    }}
-                                />
-                            )}
-                        />
+                        {isAbleToEdit ? (
+                            <DatePicker
+                                disableFuture
+                                disabled={!isAbleToEdit}
+                                value={dateOfBirth}
+                                onChange={(value) =>
+                                    handleBirthDateChange(Number(value))
+                                }
+                                inputFormat="dd/MM/yyyy"
+                                label="Date of birth"
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        sx={{
+                                            svg: {
+                                                color: isAbleToEdit
+                                                    ? palette.primary.main
+                                                    : palette.text.disabled
+                                            }
+                                        }}
+                                    />
+                                )}
+                            />
+                        ) : (
+                            <Box>
+                                <Typography variant="caption">
+                                    Date of Birth:
+                                </Typography>
+                                <Typography variant="h6">
+                                    {dateOfBirthFormat(dateOfBirth)}
+                                </Typography>
+                            </Box>
+                        )}
                     </Box>
                     <GiftGrid
                         gifts={gifts}
