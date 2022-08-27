@@ -16,7 +16,8 @@ npm run dev
 ## Things to do
 
 -   [ ] Drag and Drop People and Gifts
--   [ ] Save button to block edition
+-   [x] Save button to block edition
+-   [ ] Order alphabetical/birthdays asc/dec
 -   [ ] Dialog to confirm the delete
 -   [ ] Make it PWA
 -   [ ] Write tests
