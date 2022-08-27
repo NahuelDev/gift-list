@@ -12,9 +12,10 @@ import { PersonsContext } from "../../context";
 interface Props {
     gifts: Gift[];
     idPerson: string;
+    isAbleToEdit: boolean;
 }
 
-export const GiftGrid = ({ gifts, idPerson }: Props) => {
+export const GiftGrid = ({ gifts, idPerson, isAbleToEdit }: Props) => {
     const { addNewGift, deleteAllGifts } = useContext(PersonsContext);
     const areGifts = Boolean(gifts.length);
 
@@ -40,6 +41,7 @@ export const GiftGrid = ({ gifts, idPerson }: Props) => {
                     <IconButton
                         onClick={() => deleteAllGifts(idPerson)}
                         aria-label="Delete all the gifts"
+                        disabled={!isAbleToEdit}
                     >
                         <DeleteForeverIcon />
                     </IconButton>
@@ -47,6 +49,7 @@ export const GiftGrid = ({ gifts, idPerson }: Props) => {
                 <IconButton
                     onClick={() => addNewGift(gifts, idPerson)}
                     aria-label="Add Gift"
+                    disabled={!isAbleToEdit}
                 >
                     <AddIcon />
                 </IconButton>
@@ -56,7 +59,11 @@ export const GiftGrid = ({ gifts, idPerson }: Props) => {
                     {areGifts &&
                         gifts.map((gift) => (
                             <Collapse key={gift.id}>
-                                <GiftCard gift={gift} idPerson={idPerson} />
+                                <GiftCard
+                                    gift={gift}
+                                    idPerson={idPerson}
+                                    isAbleToEdit={isAbleToEdit}
+                                />
                             </Collapse>
                         ))}
                 </TransitionGroup>

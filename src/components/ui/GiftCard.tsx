@@ -9,9 +9,10 @@ import { PersonsContext } from "../../context";
 interface Props {
     gift: Gift;
     idPerson: string;
+    isAbleToEdit: boolean;
 }
 
-export const GiftCard = ({ gift, idPerson }: Props) => {
+export const GiftCard = ({ gift, idPerson, isAbleToEdit }: Props) => {
     const { deleteGift, changeInputGift } = useContext(PersonsContext);
 
     const { name, price, id } = gift;
@@ -42,6 +43,7 @@ export const GiftCard = ({ gift, idPerson }: Props) => {
                     width: ["100%", "100%", "auto"]
                 }}
                 name="name"
+                disabled={!isAbleToEdit}
                 label="Gift name"
                 placeholder="Flowers.."
                 type="text"
@@ -51,6 +53,7 @@ export const GiftCard = ({ gift, idPerson }: Props) => {
             <TextField
                 name="price"
                 label="Gift price"
+                disabled={!isAbleToEdit}
                 placeholder="23.12"
                 InputProps={{
                     startAdornment: (
@@ -66,6 +69,7 @@ export const GiftCard = ({ gift, idPerson }: Props) => {
             <IconButton
                 onClick={() => deleteGift(idPerson, id)}
                 aria-label="Delete Gift"
+                disabled={!isAbleToEdit}
             >
                 <DeleteIcon />
             </IconButton>

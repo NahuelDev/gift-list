@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import {
     Box,
@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import CloseIcon from "@mui/icons-material/Close";
+import SaveIcon from "@mui/icons-material/Save";
+import EditIcon from "@mui/icons-material/Edit";
 
 import { PersonsContext } from "../../context";
 import { Person } from "../../interfaces";
@@ -27,6 +29,13 @@ interface Props {
 }
 
 export const PersonCard = ({ person }: Props) => {
+    const { name, dateOfBirth, id, gifts } = person;
+
+    //If it is a new person will be editable, if already has name then no.
+    const initialValueAbleToEdit = !name;
+
+    const [isAbleToEdit, setIsAbleToEdit] = useState(initialValueAbleToEdit);
+
     const {
         handleDeletePerson,
         handleChangePerson,
@@ -35,12 +44,14 @@ export const PersonCard = ({ person }: Props) => {
 
     const { palette } = useTheme();
 
-    const { name, dateOfBirth, id, gifts } = person;
-
     const handleBirthDateChange = (date: number | null) => {
         if (!date) return;
 
         handleChangePersonBirthDate(id, date);
+    };
+
+    const handleEditCard = () => {
+        setIsAbleToEdit(!isAbleToEdit);
     };
 
     return (
@@ -57,15 +68,22 @@ export const PersonCard = ({ person }: Props) => {
                             name={"name"}
                             onChange={(e) => handleChangePerson(id, e.target)}
                             placeholder={"John doe.."}
+                            disabled={!isAbleToEdit}
                         />
                     }
                     action={
-                        <IconButton
-                            onClick={() => handleDeletePerson(id)}
-                            aria-label="Delete Person"
-                        >
-                            <CloseIcon />
-                        </IconButton>
+                        <>
+                            <IconButton onClick={handleEditCard}>
+                                {isAbleToEdit ? (
+                                    <SaveIcon aria-label="Save" />
+                                ) : (
+                                    <EditIcon aria-label="Edit" />
+                                )}
+                            </IconButton>
+                            <IconButton onClick={() => handleDeletePerson(id)}>
+                                <CloseIcon aria-label="Delete Person" />
+                            </IconButton>
+                        </>
                     }
                     sx={{
                         backgroundColor: "secondary"
@@ -100,6 +118,7 @@ export const PersonCard = ({ person }: Props) => {
 
                         <DatePicker
                             disableFuture
+                            disabled={!isAbleToEdit}
                             value={dateOfBirth}
                             onChange={(value) =>
                                 handleBirthDateChange(Number(value))
@@ -111,14 +130,20 @@ export const PersonCard = ({ person }: Props) => {
                                     {...params}
                                     sx={{
                                         svg: {
-                                            color: palette.primary.main
+                                            color: isAbleToEdit
+                                                ? palette.primary.main
+                                                : palette.text.disabled
                                         }
                                     }}
                                 />
                             )}
                         />
                     </Box>
-                    <GiftGrid gifts={gifts} idPerson={id} />
+                    <GiftGrid
+                        gifts={gifts}
+                        idPerson={id}
+                        isAbleToEdit={isAbleToEdit}
+                    />
                 </CardContent>
             </Card>
         </Box>
