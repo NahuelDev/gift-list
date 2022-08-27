@@ -19,10 +19,10 @@ export const PersonsProvider = ({ children }: PropsChangePerson) => {
 
     const addNewPersonBirthday = () => {
         const newPerson: Person = {
-            id: crypto.randomUUID(),
-            name: "",
             dateOfBirth: new Date().getTime(),
-            gifts: []
+            gifts: [],
+            id: crypto.randomUUID(),
+            name: ""
         };
 
         setPersons([...persons, newPerson]);
@@ -128,7 +128,6 @@ export const PersonsProvider = ({ children }: PropsChangePerson) => {
     return (
         <PersonsContext.Provider
             value={{
-                persons,
                 addNewGift,
                 addNewPersonBirthday,
                 changeInputGift,
@@ -136,7 +135,8 @@ export const PersonsProvider = ({ children }: PropsChangePerson) => {
                 deleteGift,
                 handleChangePerson,
                 handleChangePersonBirthDate,
-                handleDeletePerson
+                handleDeletePerson,
+                persons
             }}
         >
             {children}

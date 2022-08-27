@@ -80,11 +80,11 @@ export const PersonCard = ({ person }: Props) => {
                 >
                     <Box
                         sx={{
+                            alignItems: "center",
                             display: "flex",
                             flexDirection: ["column", "column", "row-reverse"],
-                            alignItems: "center",
-                            justifyContent: "center",
                             gap: "16px",
+                            justifyContent: "center",
                             padding: 0
                         }}
                     >

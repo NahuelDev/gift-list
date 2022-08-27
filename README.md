@@ -1,4 +1,4 @@
-# Gift List
+# Gift List [![Netlify Status](https://api.netlify.com/api/v1/badges/39252146-7b45-4210-8b2c-ddb8f412271d/deploy-status)](https://app.netlify.com/sites/classy-blini-d1df22/deploys)
 
 ## Overview
 

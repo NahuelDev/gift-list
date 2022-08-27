@@ -16,34 +16,37 @@ const background = {
 };
 
 export const lightTheme = createTheme({
-    palette: {
-        mode: "light",
-        background: {
-            default: background.default,
-        },
-        primary: {
-            main: primary.main,
-        },
-        secondary: {
-            main: secondary.main,
-        },
-        error: {
-            main: status.error,
-        },
-    },
+
     components: {
         MuiAppBar: {
             defaultProps: {
-                elevation: 0,
+                elevation: 0
             },
         },
         MuiIconButton: {
             defaultProps: {},
             styleOverrides: {
                 root: {
-                    color: primary.main,
+                    color: primary.main
                 },
             },
         },
     },
+
+    palette: {
+        background: {
+            default: background.default
+        },
+        error: {
+            main: status.error
+        },
+        mode: "light",
+        primary: {
+            main: primary.main
+        },
+        secondary: {
+            main: secondary.main
+        },
+    },
+    
 });

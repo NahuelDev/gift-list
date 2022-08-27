@@ -7,10 +7,10 @@ export const NoPersons = () => {
             item
             xs={12}
             sx={{
-                height: "calc(100vh - 64px)",
+                alignItems: "center",
                 display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
+                height: "calc(100vh - 64px)",
+                justifyContent: "center"
             }}
         >
             <Typography variant="h1" align="center">
