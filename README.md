@@ -19,7 +19,7 @@ npm run dev
 -   [x] Save button to block edition
 -   [ ] Order alphabetical/birthdays asc/dec
 -   [ ] Dialog to confirm the delete
--   [ ] Make it PWA
+-   [x] Make it PWA
 -   [ ] Write tests
 -   [ ] Add confetti if it's someone's birthday and a cake icon next to the name 🎂
 -   [ ] Refactor code Refactor code and Refactor code
