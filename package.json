@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "vite --host",
         "build": "tsc && vite build",
-        "preview": "vite preview",
+        "build:preview": "npm run build && npm run preview",
+        "preview": "vite preview --host",
         "eslint": "eslint src",
         "eslint-fix": "eslint --fix src"
     },
@@ -19,7 +20,8 @@
         "@mui/x-date-pickers": "^5.0.0-beta.6",
         "date-fns": "^2.29.2",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "vite-plugin-pwa": "^0.12.4"
     },
     "devDependencies": {
         "@types/react": "^18.0.15",
