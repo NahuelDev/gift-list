@@ -1,8 +1,8 @@
-# Gift List [![Netlify Status](https://api.netlify.com/api/v1/badges/39252146-7b45-4210-8b2c-ddb8f412271d/deploy-status)](https://app.netlify.com/sites/classy-blini-d1df22/deploys)
+# Gift List
 
 ## Overview
 
-Gift List is an app where you can add people's birthday and gifts. It was made with React, Material UI and date-fns. You can see it [here](https://giftlist.nclotet.com.ar).
+Gift List is an app where you can add people's birthday and gifts. It was made with React, Material UI and date-fns. You can see it [here](https://gift.nahuelclotet.com.ar/).
 
 ## Installation
 
